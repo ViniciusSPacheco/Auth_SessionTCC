@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./public/css/cadastro.css">
+</head>
+
+<body>
+    <div id="cadastro">
+
+        <header>
+            <div class="logo">
+                <img src="./public/TrashflowLogo 2.png" alt="">
+            </div>
+            <div class="navbar">
+                <ul>
+                    <li>Quem somos</li>
+                    <li>Ideias de Reciclagem</li>
+                    <li>Empresas cadastradas</li>
+                    <li>Contato</li>
+                </ul>
+            </div>
+
+            <div class="btn">
+                <select id="options" name="options">
+                    <option value="maca">Entrar</option>
+                    <option value="banana">Cadastrar</option>
+                    <option value="laranja">Deslogar</option>
+                </select>
+            </div>
+        </header>
+
+
+        <main class="container">
+            <div class="form-container">
+                <div class="text">
+                    <h1>Área do Usuário</h1>
+                    <p>Suas informações para o cadastro</p>
+                </div>
+                <form action="/cadastrar" method="POST">
+                    <input type="text" name="nome" placeholder="Digite seu nome" required>
+                    <input type="email" name="email" placeholder="Digite seu email" required>
+                    <input type="password" name="senha" placeholder="Digite sua senha" required>
+
+                    <label for="permissao">Deseja se cadastrar como empresa?</label>
+                    <select id="permissao" name="permissao" required>
+                        <option value="" disabled selected>Selecione uma opção</option>
+                        <option value="empresa">Sim</option>
+                        <option value="usuario">Não</option>
+                    </select>
+
+                    <button type="submit">Cadastrar</button>
+                </form>
+            </div>
+        </main>
+
+    </div>
+    <script>
+        const listItems = document.getElementsByTagName('li');
+
+        for (let i = 0; i < listItems.length; i++) {
+            listItems[i].addEventListener('click', function (event) {
+                const text = event.target.textContent;
+
+                console.log(text);
+
+                if (text === "Quem somos") {
+                    window.location.href = "/sobre";
+                } else if (text === "Ideias de Reciclagem") {
+                    window.location.href = "/cadastroideia";
+                } else if (text === "Empresas cadastradas") {
+                    window.location.href = "/cadastroempresa";
+                } else if (text === "Contato") {
+                    window.location.href = "/contato";
+                }
+            });
+        }
+
+        document.getElementById("options").addEventListener("change", function () {
+            const valor = this.value;
+
+            if (valor === "login") {
+                window.location.href = "/login";
+            } else if (valor === "cadastro") {
+                window.location.href = "/cadastrar";
+            } else if (valor === "logout") {
+                window.location.href = "/logout";
+            }
+        });
+    </script>
+
+</body>
+
+</html>
